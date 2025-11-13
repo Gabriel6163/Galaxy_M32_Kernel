@@ -1,5 +1,0 @@
-../drivers/misc/mediatek/c2k_usb/f_rawbulk.c:345:16: error: implicit truncation from 'int' to a one-bit wide bit-field changes value from 1 to -1 [-Werror,-Wsingle-bit-bitfield-constant-conversion]
-../drivers/misc/mediatek/c2k_usb/f_rawbulk.c:390:19: error: implicit truncation from 'int' to a one-bit wide bit-field changes value from 1 to -1 [-Werror,-Wsingle-bit-bitfield-constant-conversion]
-../drivers/misc/mediatek/c2k_usb/f_rawbulk.c:470:19: error: implicit truncation from 'int' to a one-bit wide bit-field changes value from 1 to -1 [-Werror,-Wsingle-bit-bitfield-constant-conversion]
-../drivers/misc/mediatek/base/power/mcdi/mtk_mcdi_governor.c:197:5: error: a function definition without a prototype is deprecated in all versions of C and is not supported in C23 [-Werror,-Wdeprecated-non-prototype]
-../drivers/samsung/debug/sec_debug_softdog.c:53:59: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
