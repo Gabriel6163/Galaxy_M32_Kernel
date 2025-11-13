@@ -1,0 +1,341 @@
+make[1]: Entering directory '/home/ork/kernel_gaming_work/out'
+  CHK     include/config/kernel.release
+  GEN     ./Makefile
+  CHK     include/generated/uapi/linux/version.h
+  CHK     include/generated/utsrelease.h
+  Using .. as source for kernel
+  CHK     scripts/mod/devicetable-offsets.h
+  CHK     include/generated/timeconst.h
+  CHK     include/generated/bounds.h
+  CHK     include/generated/asm-offsets.h
+  CALL    ../scripts/checksyscalls.sh
+  CHK     include/generated/compile.h
+  CHK     kernel/config_data.h
+../drivers/misc/tzdev/Makefile.include:2: "CONFIG_MTK_PLATFORM: "mt6768""
+../drivers/misc/tzdev/Makefile.include:3: "CONFIG_TEEGRIS_VERSION_STRING: "4.2.0""
+  AR      drivers/misc/tui/built-in.o
+  CC      drivers/misc/mediatek/c2k_usb/f_rawbulk.o
+  CC      drivers/misc/mediatek/c2k_usb/rawbulk.o
+  CC      drivers/misc/mediatek/c2k_usb/rawbulk_transfer.o
+  AR      drivers/misc/mediatek/cache-auditor/built-in.o
+  CC      drivers/misc/mediatek/ccmni/ccmni.o
+  CC      drivers/misc/mediatek/cam_cal/src/mt6768/../common/v1/eeprom_driver.o
+  CC      drivers/misc/mediatek/ccci_util/ccci_util_lib_fo.o
+  CC      drivers/misc/mediatek/cameraisp/dip/cameradip_dummy.o
+  CC      drivers/misc/mediatek/cam_cal/src/mt6768/../common/v1/eeprom_i2c_common_driver.o
+../drivers/misc/mediatek/ccu/src/Makefile:29: CCU_MAKE_FILE_CALLED
+  CC      drivers/misc/mediatek/cam_cal/src/mt6768/eeprom_i2c_custom_driver.o
+drivers/misc/mediatek/cameraisp/dip/.tmp_cameradip_dummy.o: no symbols
+  AR      drivers/misc/mediatek/cameraisp/dip/built-in.o
+../drivers/misc/mediatek/ccu/src/1.2/Makefile:24: CCU_INC=../drivers/misc/mediatek/ccu/src/mt6768/ccu_ext_interface
+  CC      drivers/misc/mediatek/ccu/src/1.2/ccu_drv.o
+  CC      drivers/misc/mediatek/ccu/src/mt6768/ccu_hw.o
+..
+  CC      drivers/misc/mediatek/cameraisp/dpe/cameradpe_dummy.o
+drivers/misc/mediatek/cameraisp/dpe/.tmp_cameradpe_dummy.o: no symbols
+  CC      drivers/misc/mediatek/cameraisp/dpe/mt6768/camera_dpe.o
+../drivers/misc/mediatek/c2k_usb/f_rawbulk.c:345:16: error: implicit truncation from 'int' to a one-bit wide bit-field changes value from 1 to -1 [-Werror,-Wsingle-bit-bitfield-constant-conversion]
+  345 |         fn->activated = 1;
+      |                       ^ ~
+../drivers/misc/mediatek/c2k_usb/f_rawbulk.c:390:19: error: implicit truncation from 'int' to a one-bit wide bit-field changes value from 1 to -1 [-Werror,-Wsingle-bit-bitfield-constant-conversion]
+  390 |                 fn->initialized = 1;
+      |                                 ^ ~
+../drivers/misc/mediatek/c2k_usb/f_rawbulk.c:470:19: error: implicit truncation from 'int' to a one-bit wide bit-field changes value from 1 to -1 [-Werror,-Wsingle-bit-bitfield-constant-conversion]
+  470 |                 fn->initialized = 1;
+      |                                 ^ ~
+3 errors generated.
+make[5]: *** [../scripts/Makefile.build:360: drivers/misc/mediatek/c2k_usb/f_rawbulk.o] Error 1
+make[5]: *** Waiting for unfinished jobs....
+  CC      drivers/misc/mediatek/ccu/src/mt6768/ccu_reg.o
+-- SukiSU-Ultra version (GitHub): 13454
+-- SukiSU-Ultra version (Github): v3.2.0-a7efaf6b@nongki
+-- SukiSU: CONFIG_KSU_TRACEPOINT_HOOK
+-- Supported Unofficial Manager: 5ec1cff (GKI) ShirkNeko udochina (GKI and KPM)
+-- KERNEL_VERSION: 4.14
+-- KERNEL_TYPE: Non-GKI
+-- KERNEL_VERSION: 4.14
+-- KPM is enabled
+  CC      drivers/misc/mediatek/chip/mtk_chip_common.o
+  CC      drivers/misc/mediatek/cam_cal/src/mt6768/camera_project/mmu_v32/cam_cal_list.o
+  CC      drivers/misc/mediatek/chip/mt6768/mtk_chip.o
+  CC      drivers/misc/mediatek/ccu/src/mt6768/ccu_kd_mailbox.o
+  CC      drivers/misc/mediatek/cam_cal/src/mt6768/camera_project/mmu_v32/eeprom_i2c_dev.o
+  CC      drivers/misc/mediatek/ccu/src/1.2/ccu_n3d_a.o
+  CC      drivers/misc/mediatek/ccci_util/ccci_util_lib_load_img.o
+  CC      drivers/misc/mediatek/ccci_util/ccci_util_lib_sys.o
+  CC      drivers/misc/mediatek/base/power/mcdi/mtk_mcdi_governor.o
+  CC      drivers/misc/mediatek/ccu/src/1.2/ccu_i2c.o
+make[4]: *** [../scripts/Makefile.build:674: drivers/misc/mediatek/c2k_usb] Error 2
+make[4]: *** Waiting for unfinished jobs....
+  CC      drivers/misc/mediatek/base/power/mdpm_v1/mtk_mdpm_common.o
+  CC      drivers/misc/mediatek/cirq/mtk_sys_cirq.o
+  CC      drivers/misc/mediatek/base/power/mt6768/mtk_picachu.o
+  AR      drivers/misc/mediatek/cam_cal/src/mt6768/camera_project/mmu_v32/built-in.o
+  AR      drivers/misc/mediatek/cam_cal/src/mt6768/built-in.o
+  AR      drivers/misc/mediatek/cam_cal/src/built-in.o
+  CC      drivers/misc/mediatek/base/power/mt6768/mtk_gpufreq_core.o
+  CC      drivers/misc/mediatek/ccu/src/mt6768/ccu_i2c_hw.o
+FDVT: Drv use 4.0 folder
+  CC      drivers/misc/mediatek/base/power/mcdi/mtk_mcdi_governor_lib.o
+  CC      drivers/misc/mediatek/cameraisp/fdvt/fdvt_dummy.o
+  AR      drivers/misc/mediatek/cameraisp/dpe/built-in.o
+  CC      drivers/misc/mediatek/ccci_util/ccci_private_log.o
+  CC      drivers/misc/mediatek/base/power/pbm_v4/mtk_pbm.o
+../drivers/misc/mediatek/base/power/mcdi/mtk_mcdi_governor.c:197:5: error: a function definition without a prototype is deprecated in all versions of C and is not supported in C23 [-Werror,-Wdeprecated-non-prototype]
+  197 | int get_cluster_off_token(cpu)
+      |     ^
+1 error generated.
+make[7]: *** [../scripts/Makefile.build:359: drivers/misc/mediatek/base/power/mcdi/mtk_mcdi_governor.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+  CC      drivers/misc/mediatek/base/power/mt6768/mtk_gpu_log.o
+drivers/misc/mediatek/cameraisp/fdvt/.tmp_fdvt_dummy.o: no symbols
+..
+  CC      drivers/misc/mediatek/ccu/src/mt6768/ccu_sw_ver.o
+  CC      drivers/misc/mediatek/cameraisp/fdvt/4.0/camera_fdvt.o
+  AR      drivers/misc/mediatek/chip/CHIP_COMMON.o
+  AR      drivers/misc/mediatek/ccmni/eccmni.o
+  AR      drivers/misc/mediatek/chip/mt6768/CHIP.o
+  AR      drivers/misc/mediatek/ccmni/built-in.o
+  AR      drivers/misc/mediatek/chip/mt6768/built-in.o
+  AR      drivers/misc/mediatek/chip/built-in.o
+  CC      drivers/misc/mediatek/base/power/mt6768/mtk_gpu_bw.o
+  CC      drivers/misc/mediatek/ccci_util/ccci_util_lib_time.o
+  CC      drivers/misc/mediatek/base/power/mdpm_v1/mt6768/mtk_mdpm_platform.o
+  AR      drivers/misc/mediatek/ccu/src/1.2/built-in.o
+..
+  CC      drivers/misc/mediatek/cameraisp/mfb/camera_mfb_dummy.o
+drivers/misc/mediatek/cameraisp/mfb/.tmp_camera_mfb_dummy.o: no symbols
+  AR      drivers/misc/mediatek/cameraisp/mfb/built-in.o
+  CC      drivers/misc/mediatek/base/power/power_gs_v1/mt6768/mtk_power_gs_6358_array.o
+make[6]: *** [../scripts/Makefile.build:674: drivers/misc/mediatek/base/power/mcdi] Error 2
+make[6]: *** Waiting for unfinished jobs....
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_main.o
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_interface.o
+  CC      drivers/misc/mediatek/base/power/power_gs_v1/mt6768/mtk_cg_array.o
+  CC      drivers/misc/mediatek/ccci_util/ccci_util_lib_main.o
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_api.o
+  AR      drivers/misc/mediatek/ccu/src/mt6768/built-in.o
+  AR      drivers/misc/mediatek/base/power/pbm_v4/built-in.o
+  AR      drivers/misc/mediatek/ccu/src/built-in.o
+  CC      drivers/misc/mediatek/base/power/power_gs_v1/mtk_power_gs.o
+  CC      drivers/misc/mediatek/ccci_util/ccci_util_ld_md_errno.o
+  AR      drivers/misc/mediatek/base/power/mdpm_v1/mt6768/built-in.o
+..
+  AR      drivers/misc/mediatek/base/power/mdpm_v1/built-in.o
+  CC      drivers/misc/mediatek/cameraisp/owe/camera_owe_dummy.o
+  AR      drivers/misc/mediatek/cirq/built-in.o
+  CC      drivers/misc/mediatek/base/power/power_gs_v1/mtk_power_gs_api.o
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_profile.o
+drivers/misc/mediatek/cameraisp/owe/.tmp_camera_owe_dummy.o: no symbols
+..
+  CC      drivers/misc/mediatek/ccci_util/ccci_util_broadcast.o
+  CC      drivers/misc/mediatek/cameraisp/pda/camera_pda_dummy.o
+  AR      drivers/misc/mediatek/cameraisp/owe/built-in.o
+  CC      drivers/misc/mediatek/base/power/power_gs_v1/mt6768/mtk_dcm_array.o
+drivers/misc/mediatek/cameraisp/pda/.tmp_camera_pda_dummy.o: no symbols
+  AR      drivers/misc/mediatek/cameraisp/pda/built-in.o
+..
+  CC      drivers/misc/mediatek/cameraisp/rsc/camera_rsc_dummy.o
+  CC      drivers/misc/mediatek/ccci_util/ccci_util_pin_broadcast.o
+  AR      drivers/misc/mediatek/cameraisp/fdvt/4.0/built-in.o
+  AR      drivers/misc/mediatek/cameraisp/fdvt/built-in.o
+  CC      drivers/misc/mediatek/base/power/power_gs_v1/mt6768/mtk_power_gs_sp.o
+drivers/misc/mediatek/cameraisp/rsc/.tmp_camera_rsc_dummy.o: no symbols
+  CC      drivers/misc/mediatek/cameraisp/rsc/engine_request.o
+  CC      drivers/misc/mediatek/cameraisp/src/cameraisp_dummy.o
+  CC      drivers/misc/mediatek/base/power/power_gs_v1/mt6768/mtk_power_gs_compare.o
+drivers/misc/mediatek/cameraisp/src/.tmp_cameraisp_dummy.o: no symbols
+  AR      drivers/misc/mediatek/base/power/mt6768/built-in.o
+  CC      drivers/misc/mediatek/ccci_util/ccci_util_sib.o
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_ipi.o
+  CC      drivers/misc/mediatek/cameraisp/src/mt6768/camera_isp.o
+  CC      drivers/samsung/debug/sec_debug_softdog.o
+..
+  CC      drivers/misc/mediatek/cameraisp/wpe/camerawpe_dummy.o
+  CC      drivers/misc/mediatek/cameraisp/tsf/camera_tsf_dummy.o
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_cpi.o
+  CC      drivers/misc/mediatek/ccci_util/ccci_util_md_rat.o
+drivers/misc/mediatek/cameraisp/tsf/.tmp_camera_tsf_dummy.o: no symbols
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_policy_dlpt.o
+drivers/misc/mediatek/cameraisp/wpe/.tmp_camerawpe_dummy.o: no symbols
+  AR      drivers/misc/mediatek/cameraisp/tsf/built-in.o
+  CC      drivers/misc/mediatek/ccci_util/ccci_util_dummy.o
+  AR      drivers/misc/mediatek/cameraisp/wpe/built-in.o
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_policy_sys_boost.o
+  AR      drivers/misc/mediatek/cameraisp/rsc/built-in.o
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_policy_ptpod.o
+  CC      drivers/misc/mediatek/base/power/power_gs_v1/mt6768/mtk_power_gs_dump_pmic.o
+  CC      drivers/sensors_lego/isg5320a.o
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_policy_pwr_thro.o
+  AR      drivers/soc/bcm/built-in.o
+  AR      drivers/soc/fsl/built-in.o
+  CC      drivers/spi/spi.o
+  CC      drivers/sensors_lego/isg5320a_sub.o
+  CC      drivers/soc/mediatek/mtk-pmic-wrap.o
+../drivers/samsung/debug/sec_debug_softdog.c:53:59: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
+   53 | static struct task_struct *secdbg_softdog_  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_policy_thermal.o
+find_key_suspect()
+      |                                                           ^
+      |                                                            void
+1 error generated.
+make[4]: *** [../scripts/Makefile.build:360: drivers/samsung/debug/sec_debug_softdog.o] Error 1
+make[3]: *** [../scripts/Makefile.build:674: drivers/samsung/debug] Error 2
+make[2]: *** [../scripts/Makefile.build:674: drivers/samsung] Error 2
+make[2]: *** Waiting for unfinished jobs....
+  CC      drivers/spi/spi-mt65xx.o
+  CC      drivers/sensorhub/comm/shub_comm.o
+  AR      drivers/soc/renesas/built-in.o
+  CC      drivers/soc/mediatek/mtk-cmdq-helper.o
+  CC      drivers/sensorhub/comm/shub_iio.o
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_policy_lcm_off.o
+  CC      drivers/spi/spi-mt65xx-dev.o
+  AR      drivers/misc/mediatek/base/power/power_gs_v1/mt6768/built-in.o
+  AR      drivers/misc/mediatek/base/power/power_gs_v1/built-in.o
+  CC      drivers/soc/mediatek/mtk-socinfo.o
+  CC      drivers/sensorhub/comm/shub_kfifo_buf.o
+  CC      drivers/sensorhub/comm/misc/shub_misc.o
+../drivers/soc/mediatek/mtk-pmic-wrap.c:3530:13: warning: unused function 'pwrap_irq_thread_init' [-Wunused-function]
+ 3530 | static void pwrap_irq_thread_init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~~
+  AR      drivers/misc/mediatek/ccci_util/ccci_util_lib.o
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_policy_hard_user_limit.o
+1 warning generated.
+  AR      drivers/misc/mediatek/ccci_util/built-in.o
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_policy_user_limit.o
+  CC      drivers/sensorhub/comm/misc/shub_batch.o
+../drivers/spi/spi-mt65xx.c:1151:6: warning: unused variable 'ret' [-Wunused-variable]
+ 1151 |         int ret = 0;
+      |             ^~~
+  AR      drivers/sensors_lego/built-in.o
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_policy_force_limit.o
+  CC      drivers/sensorhub/comm/misc/shub_injection.o
+1 warning generated.
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mtk_ppm_policy_ut.o
+  CC      drivers/sensorhub/comm/misc/shub_scontext.o
+  CC      drivers/sensorhub/debug/shub_debug.o
+  CC      drivers/sensorhub/debug/shub_debug_sysfs.o
+  CC      drivers/sensorhub/debug/shub_sensor_dump.o
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mach/mt6768/mtk_ppm_platform.o
+  CC      drivers/sensorhub/debug/shub_system_checker.o
+  CC      drivers/sensorhub/debug/shub_dump.o
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mach/mt6768/mtk_ppm_power_data.o
+  CC      drivers/sensorhub/factory/shub_factory.o
+  CC      drivers/misc/mediatek/base/power/ppm_v3/src/mach/mt6768/mtk_ppm_cobra_algo.o
+  CC      drivers/sensorhub/factory/accelerometer/accelerometer_factory.o
+  CC      drivers/sensorhub/factory/flip_cover_detector/flip_cover_detector_factory.o
+  CC      drivers/sensorhub/factory/gyroscope/gyroscope_factory.o
+  CC      drivers/sensorhub/factory/gyroscope/gyroscope_icm42605m_factory.o
+  CC      drivers/sensorhub/factory/gyroscope/gyroscope_lsm6dsl_factory.o
+  CC      drivers/sensorhub/factory/gyroscope/gyroscope_lsm6dsotr_factory.o
+  CC      drivers/sensorhub/factory/gyroscope/gyroscope_lsm6dsvtr_factory.o
+drivers/sensorhub/debug/.tmp_shub_system_checker.o: no symbols
+  CC      drivers/sensorhub/factory/gyroscope/gyroscope_icm42632m_factory.o
+  CC      drivers/sensorhub/factory/light/light_factory.o
+  CC      drivers/sensorhub/factory/magnetometer/magnetometer_factory.o
+  CC      drivers/sensorhub/factory/magnetometer/magnetometer_ak09918c_factory.o
+  CC      drivers/sensorhub/factory/magnetometer/magnetometer_mmc5633_factory.o
+  AR      drivers/soc/mediatek/built-in.o
+  AR      drivers/soc/built-in.o
+  AR      drivers/spi/built-in.o
+  CC      drivers/sensorhub/factory/magnetometer/magnetometer_yas539_factory.o
+  CC      drivers/sensorhub/factory/magnetometer/magnetometer_mxg4300s_factory.o
+  CC      drivers/sensorhub/factory/pressure/pressure_factory.o
+  AR      drivers/misc/mediatek/base/power/ppm_v3/src/mach/mt6768/built-in.o
+  CC      drivers/sensorhub/factory/pressure/pressure_bmp580_factory.o
+  AR      drivers/misc/mediatek/base/power/ppm_v3/src/mach/built-in.o
+  CC      drivers/sensorhub/factory/pressure/pressure_lps22hh_factory.o
+  AR      drivers/misc/mediatek/base/power/ppm_v3/src/built-in.o
+  AR      drivers/misc/mediatek/base/power/ppm_v3/built-in.o
+  CC      drivers/sensorhub/factory/pressure/pressure_lps22df_factory.o
+  CC      drivers/sensorhub/factory/pressure/pressure_lps25h_factory.o
+make[5]: *** [../scripts/Makefile.build:674: drivers/misc/mediatek/base/power] Error 2
+make[4]: *** [../scripts/Makefile.build:674: drivers/misc/mediatek/base] Error 2
+  CC      drivers/sensorhub/factory/proximity/proximity_factory.o
+  CC      drivers/sensorhub/factory/proximity/proximity_gp2ap110s_factory.o
+  CC      drivers/sensorhub/factory/proximity/proximity_stk3x6x_factory.o
+  CC      drivers/sensorhub/factory/proximity/proximity_stk3328_factory.o
+  CC      drivers/sensorhub/factory/proximity/proximity_tmd4912_factory.o
+  CC      drivers/sensorhub/factory/proximity/proximity_stk3391x_factory.o
+  CC      drivers/sensorhub/factory/proximity/proximity_stk33512_factory.o
+  AR      drivers/misc/mediatek/cameraisp/src/mt6768/built-in.o
+  CC      drivers/sensorhub/factory/proximity/proximity_stk3afx_factory.o
+  CC      drivers/sensorhub/others/shub_motor_callback.o
+  CC      drivers/sensorhub/others/shub_panel.o
+  AR      drivers/misc/mediatek/cameraisp/src/built-in.o
+  CC      drivers/sensorhub/others/shub_pogo.o
+  AR      drivers/misc/mediatek/cameraisp/built-in.o
+make[3]: *** [../scripts/Makefile.build:674: drivers/misc/mediatek] Error 2
+make[2]: *** [../scripts/Makefile.build:674: drivers/misc] Error 2
+  CC      drivers/sensorhub/others/shub_aois.o
+  CC      drivers/sensorhub/sensor/accelerometer.o
+  CC      drivers/sensorhub/sensor/gyroscope.o
+  CC      drivers/sensorhub/sensor/gyroscope_uncal.o
+  CC      drivers/sensorhub/sensor/magnetometer.o
+  CC      drivers/sensorhub/sensor/magnetometer_uncal.o
+  CC      drivers/sensorhub/sensor/flip_cover_detector.o
+  CC      drivers/sensorhub/sensor/light.o
+  CC      drivers/sensorhub/sensor/light_cct.o
+  CC      drivers/sensorhub/sensor/light_autobrightness.o
+  CC      drivers/sensorhub/sensor/light_seamless.o
+  CC      drivers/sensorhub/sensor/led_cover_event.o
+  CC      drivers/sensorhub/sensor/pressure.o
+  CC      drivers/sensorhub/sensor/scontext.o
+  CC      drivers/sensorhub/sensor/step.o
+  CC      drivers/sensorhub/sensor/proximity.o
+  CC      drivers/sensorhub/sensor/proximity_raw.o
+  CC      drivers/sensorhub/sensor/proximity_calibration.o
+  CC      drivers/sensorhub/sensor/motion.o
+  CC      drivers/sensorhub/sensor/super.o
+  CC      drivers/sensorhub/sensor/hub_debugger.o
+  CC      drivers/sensorhub/sensor/pocket_mode.o
+  CC      drivers/sensorhub/sensor/device_orientation.o
+  CC      drivers/sensorhub/sensor/sar_backoff_motion.o
+  CC      drivers/sensorhub/sensor/pogo_request_handler.o
+  CC      drivers/sensorhub/sensor/aois.o
+  CC      drivers/sensorhub/sensor/rotation_vector.o
+  CC      drivers/sensorhub/sensor/game_rotation_vector.o
+  CC      drivers/sensorhub/sensor/physical_sensor/accelerometer/accelerometer_icm42605m.o
+  CC      drivers/sensorhub/sensor/physical_sensor/accelerometer/accelerometer_lsm6dsl.o
+  CC      drivers/sensorhub/sensor/physical_sensor/accelerometer/accelerometer_lis2dlc12.o
+  CC      drivers/sensorhub/sensor/physical_sensor/accelerometer/accelerometer_lsm6dsotr.o
+  CC      drivers/sensorhub/sensor/physical_sensor/accelerometer/accelerometer_lsm6dsvtr.o
+  CC      drivers/sensorhub/sensor/physical_sensor/accelerometer/accelerometer_icm42632m.o
+  CC      drivers/sensorhub/sensor/physical_sensor/gyroscope/gyroscope_icm42605m.o
+  CC      drivers/sensorhub/sensor/physical_sensor/gyroscope/gyroscope_lsm6dsl.o
+  CC      drivers/sensorhub/sensor/physical_sensor/gyroscope/gyroscope_lsm6dsotr.o
+  CC      drivers/sensorhub/sensor/physical_sensor/gyroscope/gyroscope_lsm6dsvtr.o
+  CC      drivers/sensorhub/sensor/physical_sensor/gyroscope/gyroscope_icm42632m.o
+  CC      drivers/sensorhub/sensor/physical_sensor/magnetometer/magnetometer_ak09918c.o
+  CC      drivers/sensorhub/sensor/physical_sensor/magnetometer/magnetometer_mmc5633.o
+  CC      drivers/sensorhub/sensor/physical_sensor/magnetometer/magnetometer_yas539.o
+  CC      drivers/sensorhub/sensor/physical_sensor/magnetometer/magnetometer_mxg4300s.o
+  CC      drivers/sensorhub/sensor/physical_sensor/proximity/proximity_stk3x6x.o
+  CC      drivers/sensorhub/sensor/physical_sensor/proximity/proximity_gp2ap110s.o
+  CC      drivers/sensorhub/sensor/physical_sensor/proximity/proximity_stk3328.o
+  CC      drivers/sensorhub/sensor/physical_sensor/proximity/proximity_tmd4912.o
+  CC      drivers/sensorhub/sensor/physical_sensor/proximity/proximity_stk33512.o
+  CC      drivers/sensorhub/sensor/physical_sensor/proximity/proximity_stk3391x.o
+  CC      drivers/sensorhub/sensor/physical_sensor/proximity/proximity_stk3afx.o
+  CC      drivers/sensorhub/sensor/physical_sensor/light/light_stk33512.o
+  CC      drivers/sensorhub/sensor/physical_sensor/pressure/pressure_bmp580.o
+  CC      drivers/sensorhub/sensor/physical_sensor/pressure/pressure_lps22hh.o
+  CC      drivers/sensorhub/sensor/physical_sensor/pressure/pressure_lps22df.o
+  CC      drivers/sensorhub/sensorhub/shub_device.o
+  CC      drivers/sensorhub/sensorhub/shub_sysfs.o
+  CC      drivers/sensorhub/sensorhub/shub_device_wrapper.o
+  CC      drivers/sensorhub/sensorhub/shub_firmware.o
+  CC      drivers/sensorhub/sensormanager/shub_sensor_manager.o
+  CC      drivers/sensorhub/sensormanager/shub_sensor_sysfs.o
+  CC      drivers/sensorhub/sensormanager/shub_sensor.o
+  CC      drivers/sensorhub/utility/shub_utility.o
+  CC      drivers/sensorhub/utility/shub_wakelock.o
+  CC      drivers/sensorhub/utility/shub_dev_core.o
+  CC      drivers/sensorhub/utility/shub_wait_event.o
+  CC      drivers/sensorhub/utility/shub_file_manager.o
+  CC      drivers/sensorhub/vendor/shub_mtk.o
+  CC      drivers/sensorhub/utility/sensor_core.o
+  AR      drivers/sensorhub/shub.o
+  AR      drivers/sensorhub/built-in.o
+make[1]: *** [/home/ork/kernel_gaming_work/Makefile:1226: drivers] Error 2
+make[1]: Leaving directory '/home/ork/kernel_gaming_work/out'
+make: *** [Makefile:153: sub-make] Error 2

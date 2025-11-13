@@ -1,0 +1,10 @@
+config MTK_PERFMGR
+    bool "MTK Performance Manager"
+    depends on CPU_FREQ
+    default y
+    help
+      MediaTek performance manager used by FPSGO, EARA and XGF.
+
+config MTK_PERFMGR_NET
+    bool "MTK PerfMgr Net Hooks"
+    default y

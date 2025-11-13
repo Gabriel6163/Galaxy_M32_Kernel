@@ -1,0 +1,4 @@
+config MTK_EARA
+    bool "Enable EARA (Energy Aware Resource Allocation)"
+    depends on MTK_FPSGO_V3
+    default y

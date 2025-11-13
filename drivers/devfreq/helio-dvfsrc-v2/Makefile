@@ -1,0 +1,1 @@
+ccflags-y += -Idrivers/devfreq

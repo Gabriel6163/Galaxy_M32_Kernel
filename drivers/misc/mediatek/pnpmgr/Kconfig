@@ -1,0 +1,7 @@
+config PNPMGR
+    bool "MediaTek pnpmgr (performance manager) compatibility/port"
+    depends on MTK_PERFMGR_TOUCH_BOOST
+    help
+      PNPMGR provides kernel-side hooks and sysfs for MediaTek's power/perf
+      userspace (pnpmgr). It creates /sys/pnpmgr/<...> and exports functions
+      such as pnpmgr_set_boost(). Enable for fpsgo/perfmgr compatibility.

@@ -1,0 +1,6 @@
+Only in drivers/misc/mediatek/gpu/gpu_mali/mali_bifrost/mali-r32p1: Kbuild
+Only in drivers/misc/mediatek/gpu/gpu_mali/mali_bifrost/mali-r32p1: Kconfig
+Only in drivers/misc/mediatek/gpu/gpu_mali/mali_bifrost/mali-r32p1: Module.symvers
+Only in drivers/misc/mediatek/gpu/gpu_mali/mali_bifrost/mali-r32p1: driver
+Only in drivers/misc/mediatek/gpu/gpu_mali/mali_bifrost/mali-r25p0: drivers
+Only in drivers/misc/mediatek/gpu/gpu_mali/mali_bifrost/mali-r32p1: platform

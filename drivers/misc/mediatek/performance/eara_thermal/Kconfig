@@ -1,0 +1,4 @@
+config MTK_EARA_THERMAL
+    bool "Enable EARA Thermal"
+    depends on MTK_EARA
+    default y
