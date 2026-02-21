@@ -271,4 +271,9 @@ static inline ktime_t ms_to_ktime(u64 ms)
 
 # include <linux/timekeeping.h>
 
+static inline u64 ktime_get_boottime_ns(void)
+{
+	return ktime_to_ns(ktime_get_boottime());
+}
+
 #endif

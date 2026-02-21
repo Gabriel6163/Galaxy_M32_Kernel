@@ -119,6 +119,9 @@ static inline int cgroup_bpf_inherit(struct cgroup *cgrp) { return 0; }
 #define BPF_CGROUP_RUN_PROG_INET_SOCK(sk) ({ 0; })
 #define BPF_CGROUP_RUN_PROG_SOCK_OPS(sock_ops) ({ 0; })
 
+
+static inline void cgroup_bpf_get(struct cgroup *cgrp) { }
+static inline void cgroup_bpf_put(struct cgroup *cgrp) { }
 #endif /* CONFIG_CGROUP_BPF */
 
 #endif /* _BPF_CGROUP_H */

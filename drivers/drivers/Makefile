@@ -159,3 +159,4 @@ ccflags-y += -Wno-implicit-function-declaration -Wno-strict-prototypes -Wno-int-
 ccflags-y += -Wno-declaration-after-statement -Wno-unused-function
 
 # Keep a new line here!! Because someone may append config
+ccflags-y += -Wno-error -Wno-error=incompatible-pointer-types

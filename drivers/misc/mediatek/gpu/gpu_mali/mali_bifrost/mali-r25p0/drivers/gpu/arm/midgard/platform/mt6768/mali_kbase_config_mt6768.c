@@ -152,6 +152,11 @@ static int pm_callback_power_on_nolock(struct kbase_device *kbdev)
 	ged_dvfs_gpu_clock_switch_notify(1);
 #endif /* ENABLE_COMMON_DVFS */
 
+	/* Initialize adaptive serialization */
+	kbdev->adaptive_serialize_enabled = true;
+	kbdev->scene_complexity_threshold = 0;
+	pr_debug("Adaptive serialization enabled (threshold=%d)\n", kbdev->scene_complexity_threshold);
+
 	return 1;
 }
 

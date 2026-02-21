@@ -1,18 +1,14 @@
+# Kbuild fix for Clang LTO Duplicate Symbols (SysArchitect)
+
+# 1. Base comum (Compilada estritamente uma vez via Kbuild sort)
+obj-$(CONFIG_ZSTD_COMPRESS) += zstd_common_core.o
+obj-$(CONFIG_ZSTD_DECOMPRESS) += zstd_common_core.o
+zstd_common_core-y := entropy_common.o fse_decompress.o zstd_common.o
+
+# 2. Motor de Compressão
 obj-$(CONFIG_ZSTD_COMPRESS) += zstd_compress.o
-obj-$(CONFIG_ZSTD_DECOMPRESS) += zstd_decompress.o
-
-ccflags-y += -O3
-
-# Object files unique to zstd_compress and zstd_decompress
 zstd_compress-y := fse_compress.o huf_compress.o compress.o
+
+# 3. Motor de Descompressão
+obj-$(CONFIG_ZSTD_DECOMPRESS) += zstd_decompress.o
 zstd_decompress-y := huf_decompress.o decompress.o
-
-# These object files are shared between the modules.
-# Always add them to zstd_compress.
-# Unless both zstd_compress and zstd_decompress are built in
-# then also add them to zstd_decompress.
-zstd_compress-y += entropy_common.o fse_decompress.o zstd_common.o
-
-ifneq ($(CONFIG_ZSTD_COMPRESS)$(CONFIG_ZSTD_DECOMPRESS),yy)
-	zstd_decompress-y += entropy_common.o fse_decompress.o zstd_common.o
-endif

@@ -22,6 +22,7 @@
 #include <asm/compat.h>
 #include <asm/siginfo.h>
 #include <asm/signal.h>
+#include <uapi/linux/time.h>
 
 #ifndef COMPAT_USE_64BIT_TIME
 #define COMPAT_USE_64BIT_TIME 0

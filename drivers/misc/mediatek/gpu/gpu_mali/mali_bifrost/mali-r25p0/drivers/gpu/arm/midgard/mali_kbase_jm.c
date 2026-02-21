@@ -53,6 +53,16 @@ static bool kbase_jm_next_job(struct kbase_device *kbdev, int js,
 		return true;
 
 	for (i = 0; i < nr_jobs_to_submit; i++) {
+		/* Adaptive serialization: detect scene complexity */
+		if (kbdev->adaptive_serialize_enabled) {
+			int atoms_on_slot = kbase_backend_nr_atoms_on_slot(kbdev, js);
+			if (atoms_on_slot > kbdev->scene_complexity_threshold) {
+				kbdev->serialize_jobs = KBASE_SERIALIZE_INTRA_SLOT | KBASE_SERIALIZE_INTER_SLOT;
+			} else {
+				kbdev->serialize_jobs = 0; /* NONE */
+			}
+		}
+
 		struct kbase_jd_atom *katom = kbase_js_pull(kctx, js);
 
 		if (!katom)
@@ -65,8 +75,30 @@ static bool kbase_jm_next_job(struct kbase_device *kbdev, int js,
 	return false;
 }
 
+/* --- SYSARCHITECT: R54P2 BACKPORT (ABI SAFE) --- */
+static inline bool sysarch_inter_slot_throttle(struct kbase_device *kbdev, u32 js_mask)
+{
+    int i;
+    for (i = 0; i < kbdev->gpu_props.num_job_slots; i++) {
+        /* Se o slot vizinho tem jobs ativos e não é o alvo atual, estrangula */
+        if ((js_mask & (1 << i)) == 0) {
+            /* Bifrost HW Tracker Structure */
+            if (kbase_backend_nr_atoms_submitted(kbdev, i) > 0)
+                return true;
+        }
+    }
+    return false;
+}
+/* ----------------------------------------------- */
+
 u32 kbase_jm_kick(struct kbase_device *kbdev, u32 js_mask)
 {
+    /* --- SYSARCHITECT: R54P2 JOB SERIALIZATION --- */
+    if (sysarch_inter_slot_throttle(kbdev, js_mask)) {
+        return 0; /* Throttle: Retém a submissão para não engasgar a eMMC/RAM */
+    }
+    /* --------------------------------------------- */
+
 	u32 ret_mask = 0;
 
 	lockdep_assert_held(&kbdev->hwaccess_lock);

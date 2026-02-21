@@ -1163,6 +1163,10 @@ struct kbase_device {
 
 	/* See KBASE_SERIALIZE_* for details */
 	u8 serialize_jobs;
+	/* Adaptive job scheduling */
+	bool adaptive_serialize_enabled;
+	u32 scene_complexity_threshold;
+
 
 #ifdef CONFIG_MALI_CINSTR_GWT
 	u8 backup_serialize_jobs;

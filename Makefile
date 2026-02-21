@@ -449,14 +449,14 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -Wno-format-security \
 		   -std=gnu89
 ifeq ($(shell test $(CLANG_VERSION) -gt 140000; echo $$?),0)
-KBUILD_CFLAGS += -Wno-int-conversion
+KBUILD_CFLAGS += -Wno-int-conversion -Wno-declaration-after-statement
 endif
 
 KBUILD_CPPFLAGS := -D__KERNEL__
 KBUILD_AFLAGS_KERNEL :=
-KBUILD_CFLAGS_KERNEL :=
+KBUILD_CFLAGS_KERNEL := -Wno-declaration-after-statement
 KBUILD_AFLAGS_MODULE  := -DMODULE
-KBUILD_CFLAGS_MODULE  := -DMODULE
+KBUILD_CFLAGS_MODULE  := -DMODULE -Wno-declaration-after-statement
 KBUILD_LDFLAGS_MODULE := -T $(srctree)/scripts/module-common.lds
 LDFLAGS :=
 GCC_PLUGINS_CFLAGS :=
@@ -529,11 +529,11 @@ ifneq ($(LLVM_IAS),1)
 CLANG_FLAGS	+= -no-integrated-as
 endif
 CLANG_FLAGS	+= -Werror=unknown-warning-option
-KBUILD_CFLAGS	+= $(CLANG_FLAGS)
+KBUILD_CFLAGS	+= $(CLANG_FLAGS) -Wno-declaration-after-statement
 KBUILD_AFLAGS	+= $(CLANG_FLAGS)
 export CLANG_FLAGS
 ifeq ($(ld-name),lld)
-KBUILD_CFLAGS += -fuse-ld=lld
+KBUILD_CFLAGS += -fuse-ld=lld -Wno-declaration-after-statement
 endif
 KBUILD_CPPFLAGS += -Qunused-arguments
 endif
@@ -675,7 +675,7 @@ endif
 # Defaults to vmlinux, but the arch makefile usually adds further targets
 all: vmlinux
 
-KBUILD_CFLAGS	+= $(call cc-option,-fno-PIE)
+KBUILD_CFLAGS	+= $(call cc-option,-fno-PIE) -Wno-declaration-after-statement
 KBUILD_AFLAGS	+= $(call cc-option,-fno-PIE)
 CFLAGS_GCOV	:= -fprofile-arcs -ftest-coverage \
 	$(call cc-option,-fno-tree-loop-im) \
@@ -699,23 +699,23 @@ ARCH_AFLAGS :=
 ARCH_CFLAGS :=
 include arch/$(SRCARCH)/Makefile
 
-KBUILD_CFLAGS	+= $(call cc-option,-fno-delete-null-pointer-checks,)
-KBUILD_CFLAGS	+= $(call cc-disable-warning,frame-address,)
-KBUILD_CFLAGS	+= $(call cc-disable-warning, format-truncation)
-KBUILD_CFLAGS	+= $(call cc-disable-warning, format-overflow)
-KBUILD_CFLAGS	+= $(call cc-disable-warning, int-in-bool-context)
-KBUILD_CFLAGS	+= $(call cc-disable-warning, address-of-packed-member)
-KBUILD_CFLAGS	+= $(call cc-disable-warning, attribute-alias)
+KBUILD_CFLAGS	+= $(call cc-option,-fno-delete-null-pointer-checks,) -Wno-declaration-after-statement
+KBUILD_CFLAGS	+= $(call cc-disable-warning,frame-address,) -Wno-declaration-after-statement
+KBUILD_CFLAGS	+= $(call cc-disable-warning, format-truncation) -Wno-declaration-after-statement
+KBUILD_CFLAGS	+= $(call cc-disable-warning, format-overflow) -Wno-declaration-after-statement
+KBUILD_CFLAGS	+= $(call cc-disable-warning, int-in-bool-context) -Wno-declaration-after-statement
+KBUILD_CFLAGS	+= $(call cc-disable-warning, address-of-packed-member) -Wno-declaration-after-statement
+KBUILD_CFLAGS	+= $(call cc-disable-warning, attribute-alias) -Wno-declaration-after-statement
 
 ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
-KBUILD_CFLAGS   += -Os
+KBUILD_CFLAGS   += -Os -Wno-declaration-after-statement
 else
-KBUILD_CFLAGS   += -O2
+KBUILD_CFLAGS   += -O2 -Wno-declaration-after-statement
 endif
 
 # Tell gcc to never replace conditional load with a non-conditional one
-KBUILD_CFLAGS	+= $(call cc-option,--param=allow-store-data-races=0)
-KBUILD_CFLAGS	+= $(call cc-option,-fno-allow-store-data-races)
+KBUILD_CFLAGS	+= $(call cc-option,--param=allow-store-data-races=0) -Wno-declaration-after-statement
+KBUILD_CFLAGS	+= $(call cc-option,-fno-allow-store-data-races) -Wno-declaration-after-statement
 
 # check for 'asm goto'
 ifeq ($(shell $(CONFIG_SHELL) $(srctree)/scripts/gcc-goto.sh $(CC) $(KBUILD_CFLAGS)), y)
@@ -739,23 +739,17 @@ endif
 # Rissu: handle older toolchains
 ifeq ($(shell test $(CLANG_VERSION) -gt 110000; echo $$?),0)
 ifdef CONFIG_LLVM_POLLY
-KBUILD_CFLAGS	+= -mllvm -polly \
-		   -mllvm -polly-ast-use-context \
-		   -mllvm -polly-invariant-load-hoisting \
-		   -mllvm -polly-run-inliner \
-		   -mllvm -polly-vectorizer=stripmine
 # Polly may optimise loops with dead paths beyound what the linker
 # # can understand. This may negate the effect of the linker's DCE
 # # so we tell Polly to perfom proven DCE on the loops it optimises
 # # in order to preserve the overall effect of the linker's DCE.
 ifdef CONFIG_LD_DEAD_CODE_DATA_ELIMINATION
-KBUILD_CFLAGS	+= -mllvm -polly-run-dce
 endif
 endif
 endif
 
 ifneq ($(CONFIG_FRAME_WARN),0)
-KBUILD_CFLAGS += $(call cc-option,-Wframe-larger-than=${CONFIG_FRAME_WARN})
+KBUILD_CFLAGS += $(call cc-option,-Wframe-larger-than=${CONFIG_FRAME_WARN}) -Wno-declaration-after-statement
 endif
 
 # This selects the stack protector compiler flag. Testing it is delayed
@@ -778,36 +772,36 @@ ifdef CONFIG_CC_STACKPROTECTOR
   stackp-path := $(srctree)/scripts/gcc-$(SRCARCH)_$(BITS)-has-stack-protector.sh
   stackp-check := $(wildcard $(stackp-path))
 endif
-KBUILD_CFLAGS += $(stackp-flag)
+KBUILD_CFLAGS += $(stackp-flag) -Wno-declaration-after-statement
 
 ifeq ($(cc-name),clang)
-KBUILD_CFLAGS += $(call cc-disable-warning, format-invalid-specifier)
-KBUILD_CFLAGS += $(call cc-disable-warning, gnu)
-KBUILD_CFLAGS += $(call cc-disable-warning, duplicate-decl-specifier)
+KBUILD_CFLAGS += $(call cc-disable-warning, format-invalid-specifier) -Wno-declaration-after-statement
+KBUILD_CFLAGS += $(call cc-disable-warning, gnu) -Wno-declaration-after-statement
+KBUILD_CFLAGS += $(call cc-disable-warning, duplicate-decl-specifier) -Wno-declaration-after-statement
 # Quiet clang warning: comparison of unsigned expression < 0 is always false
-KBUILD_CFLAGS += $(call cc-disable-warning, tautological-compare)
+KBUILD_CFLAGS += $(call cc-disable-warning, tautological-compare) -Wno-declaration-after-statement
 # CLANG uses a _MergedGlobals as optimization, but this breaks modpost, as the
 # source of a reference will be _MergedGlobals and not on of the whitelisted names.
 # See modpost pattern 2
-KBUILD_CFLAGS += $(call cc-option, -mno-global-merge,)
-KBUILD_CFLAGS += $(call cc-option, -fcatch-undefined-behavior)
+KBUILD_CFLAGS += $(call cc-option, -mno-global-merge,) -Wno-declaration-after-statement
+KBUILD_CFLAGS += $(call cc-option, -fcatch-undefined-behavior) -Wno-declaration-after-statement
 endif
 
 # These warnings generated too much noise in a regular build.
 # Use make W=1 to enable them (see scripts/Makefile.extrawarn)
-KBUILD_CFLAGS += $(call cc-disable-warning, unused-but-set-variable)
+KBUILD_CFLAGS += $(call cc-disable-warning, unused-but-set-variable) -Wno-declaration-after-statement
 
 ifeq ($(ld-name),lld)
 LDFLAGS += -O2
 endif
 
-KBUILD_CFLAGS += $(call cc-disable-warning, unused-const-variable)
+KBUILD_CFLAGS += $(call cc-disable-warning, unused-const-variable) -Wno-declaration-after-statement
 
 # These result in bogus false positives
-KBUILD_CFLAGS += $(call cc-disable-warning, dangling-pointer)
+KBUILD_CFLAGS += $(call cc-disable-warning, dangling-pointer) -Wno-declaration-after-statement
 
 ifdef CONFIG_FRAME_POINTER
-KBUILD_CFLAGS	+= -fno-omit-frame-pointer -fno-optimize-sibling-calls
+KBUILD_CFLAGS	+= -fno-omit-frame-pointer -fno-optimize-sibling-calls -Wno-declaration-after-statement
 else
 # Some targets (ARM with Thumb2, for example), can't be built with frame
 # pointers.  For those, we don't have FUNCTION_TRACER automatically
@@ -815,12 +809,12 @@ else
 # incompatible with -fomit-frame-pointer with current GCC, so we don't use
 # -fomit-frame-pointer with FUNCTION_TRACER.
 ifndef CONFIG_FUNCTION_TRACER
-KBUILD_CFLAGS	+= -fomit-frame-pointer
+KBUILD_CFLAGS	+= -fomit-frame-pointer -Wno-declaration-after-statement
 endif
 endif
 # Initialize all stack variables with a 0xAA pattern.
 ifdef CONFIG_INIT_STACK_ALL_PATTERN
-KBUILD_CFLAGS	+= -ftrivial-auto-var-init=pattern
+KBUILD_CFLAGS	+= -ftrivial-auto-var-init=pattern -Wno-declaration-after-statement
 endif
 
 # Initialize all stack variables with a zero value.
@@ -828,17 +822,17 @@ ifdef CONFIG_INIT_STACK_ALL_ZERO
 # Future support for zero initialization is still being debated, see
 # https://bugs.llvm.org/show_bug.cgi?id=45497. These flags are subject to being
 # renamed or dropped.
-KBUILD_CFLAGS  += -ftrivial-auto-var-init=zero
-KBUILD_CFLAGS  += $(call cc-option, -enable-trivial-auto-var-init-zero-knowing-it-will-be-removed-from-clang)
+KBUILD_CFLAGS  += -ftrivial-auto-var-init=zero -Wno-declaration-after-statement
+KBUILD_CFLAGS  += $(call cc-option, -enable-trivial-auto-var-init-zero-knowing-it-will-be-removed-from-clang) -Wno-declaration-after-statement
 endif
 
-KBUILD_CFLAGS   += $(call cc-option, -fno-var-tracking-assignments)
+KBUILD_CFLAGS   += $(call cc-option, -fno-var-tracking-assignments) -Wno-declaration-after-statement
 
 ifdef CONFIG_DEBUG_INFO
 ifdef CONFIG_DEBUG_INFO_SPLIT
-KBUILD_CFLAGS   += $(call cc-option, -gsplit-dwarf, -g)
+KBUILD_CFLAGS   += $(call cc-option, -gsplit-dwarf, -g) -Wno-declaration-after-statement
 else
-KBUILD_CFLAGS	+= -g
+KBUILD_CFLAGS	+= -g -Wno-declaration-after-statement
 endif
 ifeq ($(LLVM_IAS),1)
 KBUILD_AFLAGS	+= -g
@@ -847,7 +841,7 @@ KBUILD_AFLAGS	+= -Wa,-gdwarf-2
 endif
 endif
 ifdef CONFIG_DEBUG_INFO_DWARF4
-KBUILD_CFLAGS	+= $(call cc-option, -gdwarf-4,)
+KBUILD_CFLAGS	+= $(call cc-option, -gdwarf-4,) -Wno-declaration-after-statement
 endif
 
 ifdef CONFIG_DEBUG_INFO_REDUCED
@@ -870,7 +864,7 @@ export CC_FLAGS_FTRACE
 ifdef CONFIG_HAVE_FENTRY
 CC_USING_FENTRY	:= $(call cc-option, -mfentry -DCC_USING_FENTRY)
 endif
-KBUILD_CFLAGS	+= $(CC_FLAGS_FTRACE) $(CC_USING_FENTRY)
+KBUILD_CFLAGS	+= $(CC_FLAGS_FTRACE) $(CC_USING_FENTRY) -Wno-declaration-after-statement
 KBUILD_AFLAGS	+= $(CC_USING_FENTRY)
 ifdef CONFIG_DYNAMIC_FTRACE
 	ifdef CONFIG_HAVE_C_RECORDMCOUNT
@@ -882,12 +876,12 @@ endif
 
 # We trigger additional mismatches with less inlining
 ifdef CONFIG_DEBUG_SECTION_MISMATCH
-KBUILD_CFLAGS += $(call cc-option, -fno-inline-functions-called-once)
+KBUILD_CFLAGS += $(call cc-option, -fno-inline-functions-called-once) -Wno-declaration-after-statement
 endif
 
 ifdef CONFIG_LD_DEAD_CODE_DATA_ELIMINATION
-KBUILD_CFLAGS	+= $(call cc-option,-ffunction-sections,)
-KBUILD_CFLAGS	+= $(call cc-option,-fdata-sections,)
+KBUILD_CFLAGS	+= $(call cc-option,-ffunction-sections,) -Wno-declaration-after-statement
+KBUILD_CFLAGS	+= $(call cc-option,-fdata-sections,) -Wno-declaration-after-statement
 endif
 
 ifdef CONFIG_LTO_CLANG
@@ -914,7 +908,7 @@ endif
 
 ifdef CONFIG_LTO
 LTO_CFLAGS	:= $(lto-clang-flags)
-KBUILD_CFLAGS	+= $(LTO_CFLAGS)
+KBUILD_CFLAGS	+= $(LTO_CFLAGS) -Wno-declaration-after-statement
 
 DISABLE_LTO	:= $(DISABLE_LTO_CLANG)
 export LTO_CFLAGS DISABLE_LTO
@@ -944,7 +938,7 @@ endif
 ifdef CONFIG_CFI
 # cfi-flags are re-tested in prepare-compiler-check
 CFI_CFLAGS	:= $(cfi-clang-flags)
-KBUILD_CFLAGS	+= $(CFI_CFLAGS)
+KBUILD_CFLAGS	+= $(CFI_CFLAGS) -Wno-declaration-after-statement
 
 DISABLE_CFI	:= $(DISABLE_CFI_CLANG)
 DISABLE_LTO	+= $(DISABLE_CFI)
@@ -953,7 +947,7 @@ endif
 
 ifdef CONFIG_SHADOW_CALL_STACK
 CC_FLAGS_SCS	:= -fsanitize=shadow-call-stack
-KBUILD_CFLAGS	+= $(CC_FLAGS_SCS)
+KBUILD_CFLAGS	+= $(CC_FLAGS_SCS) -Wno-declaration-after-statement
 export CC_FLAGS_SCS
 endif
 
@@ -962,60 +956,60 @@ NOSTDINC_FLAGS += -nostdinc -isystem $(shell $(CC) -print-file-name=include)
 CHECKFLAGS     += $(NOSTDINC_FLAGS)
 
 # warn about C99 declaration after statement
-KBUILD_CFLAGS += $(call cc-option,-Wdeclaration-after-statement,)
+KBUILD_CFLAGS += $(call cc-option,-Wdeclaration-after-statement,) -Wno-declaration-after-statement
 
 # disable pointer signed / unsigned warnings in gcc 4.0
-KBUILD_CFLAGS += $(call cc-disable-warning, pointer-sign)
+KBUILD_CFLAGS += $(call cc-disable-warning, pointer-sign) -Wno-declaration-after-statement
 
 # disable stringop warnings in gcc 8+
-KBUILD_CFLAGS += $(call cc-disable-warning, stringop-truncation)
+KBUILD_CFLAGS += $(call cc-disable-warning, stringop-truncation) -Wno-declaration-after-statement
 
 # We'll want to enable this eventually, but it's not going away for 5.7 at least
-KBUILD_CFLAGS += $(call cc-disable-warning, zero-length-bounds)
-KBUILD_CFLAGS += $(call cc-disable-warning, array-bounds)
-KBUILD_CFLAGS += $(call cc-disable-warning, stringop-overflow)
+KBUILD_CFLAGS += $(call cc-disable-warning, zero-length-bounds) -Wno-declaration-after-statement
+KBUILD_CFLAGS += $(call cc-disable-warning, array-bounds) -Wno-declaration-after-statement
+KBUILD_CFLAGS += $(call cc-disable-warning, stringop-overflow) -Wno-declaration-after-statement
 
 # Another good warning that we'll want to enable eventually
-KBUILD_CFLAGS += $(call cc-disable-warning, restrict)
+KBUILD_CFLAGS += $(call cc-disable-warning, restrict) -Wno-declaration-after-statement
 
 # Enabled with W=2, disabled by default as noisy
-KBUILD_CFLAGS += $(call cc-disable-warning, maybe-uninitialized)
+KBUILD_CFLAGS += $(call cc-disable-warning, maybe-uninitialized) -Wno-declaration-after-statement
 
 # disable invalid "can't wrap" optimizations for signed / pointers
-KBUILD_CFLAGS	+= $(call cc-option,-fno-strict-overflow)
+KBUILD_CFLAGS	+= $(call cc-option,-fno-strict-overflow) -Wno-declaration-after-statement
 
 # clang sets -fmerge-all-constants by default as optimization, but this
 # is non-conforming behavior for C and in fact breaks the kernel, so we
 # need to disable it here generally.
-KBUILD_CFLAGS	+= $(call cc-option,-fno-merge-all-constants)
+KBUILD_CFLAGS	+= $(call cc-option,-fno-merge-all-constants) -Wno-declaration-after-statement
 
 # for gcc -fno-merge-all-constants disables everything, but it is fine
 # to have actual conforming behavior enabled.
-KBUILD_CFLAGS	+= $(call cc-option,-fmerge-constants)
+KBUILD_CFLAGS	+= $(call cc-option,-fmerge-constants) -Wno-declaration-after-statement
 
 # Make sure -fstack-check isn't enabled (like gentoo apparently did)
-KBUILD_CFLAGS  += $(call cc-option,-fno-stack-check,)
+KBUILD_CFLAGS  += $(call cc-option,-fno-stack-check,) -Wno-declaration-after-statement
 
 # conserve stack if available
-KBUILD_CFLAGS   += $(call cc-option,-fconserve-stack)
+KBUILD_CFLAGS   += $(call cc-option,-fconserve-stack) -Wno-declaration-after-statement
 
 # disallow errors like 'EXPORT_GPL(foo);' with missing header
-KBUILD_CFLAGS   += $(call cc-option,-Werror=implicit-int)
+KBUILD_CFLAGS   += $(call cc-option,-Werror=implicit-int) -Wno-declaration-after-statement
 
 # require functions to have arguments in prototypes, not empty 'int foo()'
-KBUILD_CFLAGS   += $(call cc-option,-Werror=strict-prototypes)
+KBUILD_CFLAGS   += $(call cc-option,-Werror=strict-prototypes) -Wno-declaration-after-statement
 
 # Prohibit date/time macros, which would make the build non-deterministic
-KBUILD_CFLAGS   += $(call cc-option,-Werror=date-time)
+KBUILD_CFLAGS   += $(call cc-option,-Werror=date-time) -Wno-declaration-after-statement
 
 # enforce correct pointer usage
-KBUILD_CFLAGS   += $(call cc-option,-Werror=incompatible-pointer-types)
+KBUILD_CFLAGS   += $(call cc-option,-Werror=incompatible-pointer-types) -Wno-declaration-after-statement
 
 # Require designated initializers for all marked structures
-KBUILD_CFLAGS   += $(call cc-option,-Werror=designated-init)
+KBUILD_CFLAGS   += $(call cc-option,-Werror=designated-init) -Wno-declaration-after-statement
 
 # change __FILE__ to the relative path from the srctree
-KBUILD_CFLAGS	+= $(call cc-option,-fmacro-prefix-map=$(srctree)/=)
+KBUILD_CFLAGS	+= $(call cc-option,-fmacro-prefix-map=$(srctree)/=) -Wno-declaration-after-statement
 
 # use the deterministic mode of AR if available
 KBUILD_ARFLAGS := $(call ar-option,D)
@@ -1028,7 +1022,7 @@ include scripts/Makefile.ubsan
 # last assignments
 KBUILD_CPPFLAGS += $(ARCH_CPPFLAGS) $(KCPPFLAGS)
 KBUILD_AFLAGS   += $(ARCH_AFLAGS)   $(KAFLAGS)
-KBUILD_CFLAGS   += $(ARCH_CFLAGS)   $(KCFLAGS)
+KBUILD_CFLAGS   += $(ARCH_CFLAGS)   $(KCFLAGS) -Wno-declaration-after-statement
 
 # Use --build-id when available.
 LDFLAGS_BUILD_ID := $(call ld-option, --build-id)

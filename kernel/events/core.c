@@ -3741,10 +3741,12 @@ static inline u64 perf_event_count(struct perf_event *event)
  *     will not be local and we cannot read them atomically
  *   - must not have a pmu::count method
  */
-int perf_event_read_local(struct perf_event *event, u64 *value)
+int perf_event_read_local(struct perf_event *event, u64 *value,
+			     u64 *enabled, u64 *running)
 {
 	unsigned long flags;
 	int ret = 0;
+	u64 now;
 
 	/*
 	 * Disabling interrupts avoids all counter scheduling (context
@@ -3789,6 +3791,16 @@ int perf_event_read_local(struct perf_event *event, u64 *value)
 	if (event->oncpu == smp_processor_id())
 		event->pmu->read(event);
 
+	now = event->shadow_ctx_time + perf_clock();
+	if (enabled)
+		*enabled = now - event->tstamp_enabled;
+	if (event->oncpu == smp_processor_id()) {
+		event->pmu->read(event);
+		if (running)
+			*running = now - event->tstamp_running;
+	} else if (running) {
+		*running = event->total_time_running;
+	}
 	*value = local64_read(&event->count);
 out:
 	local_irq_restore(flags);

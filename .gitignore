@@ -14,3 +14,17 @@ clang/
 # Temporary dirs
 ork/
 *.diff
+
+# --- ORKGABB: IGNORES DE TRINCHEIRA ---
+clang*/
+toolchain*/
+out/
+AnyKernel*/
+*.zip
+*.tar.*
+*.patch
+*.diff
+*.orig
+*.rej
+*.bak*
+drivers/kernelsu.bak*/

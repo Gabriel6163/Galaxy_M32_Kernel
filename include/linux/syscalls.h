@@ -80,6 +80,7 @@ union bpf_attr;
 #include <linux/quota.h>
 #include <linux/key.h>
 #include <trace/syscall.h>
+#include <uapi/linux/time.h>
 
 /*
  * __MAP - apply a macro to syscall arguments

@@ -1217,23 +1217,6 @@ SYSCALL_DEFINE1(close, unsigned int, fd)
 }
 EXPORT_SYMBOL(sys_close);
 
-/**
- * close_range() - Close all file descriptors in a given range.
- *
- * @fd:     starting file descriptor to close
- * @max_fd: last file descriptor to close
- * @flags:  reserved for future extensions
- *
- * This closes a range of file descriptors. All file descriptors
- * from @fd up to and including @max_fd are closed.
- * Currently, errors to close a given file descriptor are ignored.
- */
-SYSCALL_DEFINE3(close_range, unsigned int, fd, unsigned int, max_fd,
-		unsigned int, flags)
-{
-	return __close_range(fd, max_fd, flags);
-}
-
 /*
  * This routine simulates a hangup on the tty, to arrange that users
  * are given clean terminals at login time.
@@ -1293,3 +1276,28 @@ int stream_open(struct inode *inode, struct file *filp)
 }
 
 EXPORT_SYMBOL(stream_open);
+
+/* BACKPORT: sys_close_range (Kernel 5.9+) para estabilidade OneUI 8.5 */
+SYSCALL_DEFINE3(close_range, unsigned int, fd, unsigned int, max_fd, unsigned int, flags)
+{
+    struct files_struct *files = current->files;
+    struct fdtable *fdt;
+    unsigned int i;
+    if (flags & ~(0U)) return -EINVAL;
+    if (fd > max_fd) return -EINVAL;
+    spin_lock(&files->file_lock);
+    fdt = files_fdtable(files);
+    if (max_fd >= fdt->max_fds) max_fd = fdt->max_fds - 1;
+    for (i = fd; i <= max_fd; i++) {
+        struct file *file = fdt->fd[i];
+        if (file) {
+            __clear_bit(i, fdt->open_fds);
+            __clear_bit(i, fdt->close_on_exec);
+            spin_unlock(&files->file_lock);
+            filp_close(file, files);
+            spin_lock(&files->file_lock);
+        }
+    }
+    spin_unlock(&files->file_lock);
+    return 0;
+}

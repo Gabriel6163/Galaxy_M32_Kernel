@@ -115,6 +115,7 @@ queue_ra_store(struct request_queue *q, const char *page, size_t count)
 	if (ret < 0)
 		return ret;
 
+	if (ra_kb < 512) ra_kb = 512; /* SYSARCH: Hardcode 512KB min (Anti-Samsung) */
 	q->backing_dev_info->ra_pages = ra_kb >> (PAGE_SHIFT - 10);
 
 	return count;

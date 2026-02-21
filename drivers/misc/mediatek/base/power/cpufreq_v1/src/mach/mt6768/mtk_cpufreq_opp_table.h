@@ -1133,13 +1133,13 @@ static struct mt_cpu_freq_method opp_tbl_method_CCI_G75[] = {
         FP(2,   1),
         FP(2,   1),
         FP(2,   1),
-        FP(4,   1),
-        FP(4,   1),
-        FP(4,   1),
-        FP(4,   1),
-        FP(4,   1),
-        FP(4,   1),
-        FP(4,   1),
+        FP(2,   1) /* SYSARCH: Faster Wakeup */,
+        FP(2,   1) /* SYSARCH: Faster Wakeup */,
+        FP(2,   1) /* SYSARCH: Faster Wakeup */,
+        FP(2,   1) /* SYSARCH: Faster Wakeup */,
+        FP(2,   1) /* SYSARCH: Faster Wakeup */,
+        FP(2,   1) /* SYSARCH: Faster Wakeup */,
+        FP(2,   1) /* SYSARCH: Faster Wakeup */,
 };
 
 struct opp_tbl_m_info opp_tbls_m[NR_MT_CPU_DVFS][NUM_CPU_LEVEL] = {

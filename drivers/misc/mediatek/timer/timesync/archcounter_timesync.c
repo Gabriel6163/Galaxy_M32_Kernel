@@ -12,6 +12,7 @@
  */
 
 #include <linux/module.h>
+#include <linux/ktime.h>
 #include <asm/arch_timer.h>
 #include <linux/init.h>
 #include <linux/timer.h>

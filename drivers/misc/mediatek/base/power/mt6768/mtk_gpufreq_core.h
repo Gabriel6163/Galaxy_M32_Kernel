@@ -162,7 +162,7 @@
  **************************************************/
 #define MT_GPUFREQ_STATIC_PWR_READY2USE
 #define MT_GPUFREQ_LOW_BATT_VOLT_PROTECT
-#define MT_GPUFREQ_BATT_PERCENT_PROTECT /* todo: disable it */
+/* #define MT_GPUFREQ_BATT_PERCENT_PROTECT (Disabled by SysArch) */ /* todo: disable it */
 #define MT_GPUFREQ_BATT_OC_PROTECT
 #define MT_GPUFREQ_DYNAMIC_POWER_TABLE_UPDATE
 
@@ -170,21 +170,21 @@
  * Battery Over Current Protect
  **************************************************/
 #ifdef MT_GPUFREQ_BATT_OC_PROTECT
-#define MT_GPUFREQ_BATT_OC_LIMIT_FREQ		(485000)	/* KHz */
+#define MT_GPUFREQ_BATT_OC_LIMIT_FREQ		(800000) /* SYSARCH: Level-Up Protection */	/* KHz */
 #endif
 
 /**************************************************
  * Battery Percentage Protect
  **************************************************/
 #ifdef MT_GPUFREQ_BATT_PERCENT_PROTECT
-#define MT_GPUFREQ_BATT_PERCENT_LIMIT_FREQ	(485000)	/* KHz */
+#define MT_GPUFREQ_BATT_PERCENT_LIMIT_FREQ	(800000) /* SYSARCH: Level-Up Protection */	/* KHz */
 #endif
 
 /**************************************************
  * Low Battery Volume Protect
  **************************************************/
 #ifdef MT_GPUFREQ_LOW_BATT_VOLT_PROTECT
-#define MT_GPUFREQ_LOW_BATT_VOLT_LIMIT_FREQ	(485000)	/* KHz */
+#define MT_GPUFREQ_LOW_BATT_VOLT_LIMIT_FREQ	(800000) /* SYSARCH: Level-Up Protection */	/* KHz */
 #endif
 
 /**************************************************

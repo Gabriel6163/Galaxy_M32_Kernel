@@ -136,6 +136,7 @@ static int __maybe_unused sixty_four     = 64;
 static int __maybe_unused maxval_12_bits = 4095;
 #endif // CONFIG_SCHED_BORE
 
+
 static int __maybe_unused neg_one = -1;
 
 static int zero;

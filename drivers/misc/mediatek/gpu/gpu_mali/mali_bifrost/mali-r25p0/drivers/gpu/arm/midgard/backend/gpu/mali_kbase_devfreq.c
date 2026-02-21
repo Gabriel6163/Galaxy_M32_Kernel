@@ -618,7 +618,7 @@ int kbase_devfreq_init(struct kbase_device *kbdev)
 	dp = &kbdev->devfreq_profile;
 
 	dp->initial_freq = kbdev->current_freqs[0];
-	dp->polling_ms = 100;
+	dp->polling_ms =  20; /* SYSARCH: Devfreq Sync */
 	dp->target = kbase_devfreq_target;
 	dp->get_dev_status = kbase_devfreq_status;
 	dp->get_cur_freq = kbase_devfreq_cur_freq;

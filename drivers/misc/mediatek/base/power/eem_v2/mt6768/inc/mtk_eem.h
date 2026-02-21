@@ -227,6 +227,7 @@ extern u64 aee_rr_curr_ptp_temp(void);
 extern u8 aee_rr_curr_ptp_status(void);
 #endif
 
+#ifdef CONFIG_MTK_EEM
 /* EEM Extern Function */
 extern int mt_eem_status(enum eem_det_id id);
 extern unsigned int get_efuse_status(void);
@@ -238,6 +239,13 @@ extern void eem_set_pi_efuse(enum eem_det_id id,
 extern void eem_set_pi_dvtfixed(enum eem_det_id id,
 		unsigned int pi_dvtfixed);
 
+#else
+static inline int mt_eem_status(enum eem_det_id id) { return 0; }
+static inline unsigned int get_efuse_status(void) { return 0; }
+static inline unsigned int mt_eem_is_enabled(void) { return 0; }
+static inline void eem_set_pi_efuse(enum eem_det_id id, unsigned int pi_efuse, unsigned int loo_enabled) {}
+static inline void eem_set_pi_dvtfixed(enum eem_det_id id, unsigned int pi_dvtfixed) {}
+#endif
 /* DRCC */
 extern unsigned int drcc_offset_done;
 #endif

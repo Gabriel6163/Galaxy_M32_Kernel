@@ -2285,7 +2285,7 @@ SYSCALL_DEFINE6(epoll_pwait2, int, epfd, struct epoll_event __user *, events,
 	struct timespec64 ts, *to = NULL;
 
 	if (timeout) {
-		if (get_timespec64(&ts, timeout))
+		if (get_timespec64(&ts, (const struct timespec __user *)timeout))
 			return -EFAULT;
 		to = &ts;
 		if (poll_select_set_timeout(to, ts.tv_sec, ts.tv_nsec))
@@ -2363,7 +2363,7 @@ COMPAT_SYSCALL_DEFINE6(epoll_pwait2, int, epfd,
 	struct timespec64 ts, *to = NULL;
 
 	if (timeout) {
-		if (get_timespec64(&ts, timeout))
+		if (get_timespec64(&ts, (const struct timespec __user *)timeout))
 			return -EFAULT;
 		to = &ts;
 		if (poll_select_set_timeout(to, ts.tv_sec, ts.tv_nsec))

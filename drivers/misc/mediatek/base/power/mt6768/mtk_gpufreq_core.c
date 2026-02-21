@@ -309,7 +309,19 @@ unsigned int mt_gpufreq_target(unsigned int request_idx, bool is_real_idx)
 	}
 
 	/* look up for the target OPP table */
-	target_freq = g_opp_table[target_idx].gpufreq_khz;
+	
+        /* --- SYSARCH: 32-OPP Turbo Boost --- */
+        /* Se o clock está subindo (target_idx < g_cur_opp_idx), forçamos o pulo de 8 steps */
+        if (target_idx < g_cur_opp_idx) {
+            if (g_cur_opp_idx > 8) {
+                target_idx = g_cur_opp_idx - 8;
+            } else {
+                target_idx = 0; /* Trava no topo absoluto (1.1GHz) */
+            }
+        }
+        /* ----------------------------------- */
+        
+        target_freq = g_opp_table[target_idx].gpufreq_khz;
 	target_volt = g_opp_table[target_idx].gpufreq_volt;
 	target_vsram = g_opp_table[target_idx].gpufreq_vsram;
 
