@@ -718,13 +718,3 @@ EXPORT_SYMBOL(LZ4_decompress_fast_usingDict);
 MODULE_LICENSE("Dual BSD/GPL");
 MODULE_DESCRIPTION("LZ4 decompressor");
 #endif
-/* --- ADAPTADOR DE DESCOMPRESSÃO --- */
-int lz4_decompress_unknownoutputsize(const unsigned char *src, size_t src_len,
-				     unsigned char *dest, size_t *dest_len)
-{
-	int ret = LZ4_decompress_safe(src, dest, src_len, *dest_len);
-	if (ret < 0) return -1;
-	*dest_len = ret;
-	return 0;
-}
-EXPORT_SYMBOL(lz4_decompress_unknownoutputsize);
