@@ -938,3 +938,19 @@ EXPORT_SYMBOL(LZ4_compress_fast_continue);
 
 MODULE_LICENSE("Dual BSD/GPL");
 MODULE_DESCRIPTION("LZ4 compressor");
+
+/* --- SYSARCHITECT LEGACY BRIDGE --- */
+#include <linux/module.h>
+#ifndef LZ4_MEM_COMPRESS
+#define LZ4_MEM_COMPRESS LZ4_compressBound(0)
+#endif
+
+int lz4_compress(const unsigned char *src, size_t src_len,
+                 unsigned char *dst, size_t *dst_len, void *wrkmem)
+{
+        int ret = LZ4_compress_default(src, dst, src_len, *dst_len, wrkmem);
+        if (ret <= 0) return -1;
+        *dst_len = ret;
+        return 0;
+}
+EXPORT_SYMBOL(lz4_compress);
