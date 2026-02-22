@@ -60,11 +60,11 @@
  * (CFS  default: 6ms * (1 + ilog(ncpus)), units: nanoseconds)
  */
 #ifdef CONFIG_SCHED_BORE
-unsigned int sysctl_sched_latency			= 24000000ULL;
-static unsigned int normalized_sysctl_sched_latency	= 24000000ULL;
+unsigned int sysctl_sched_latency			= 4000000ULL;
+static unsigned int normalized_sysctl_sched_latency	= 4000000ULL;
 #else // CONFIG_SCHED_BORE
-unsigned int sysctl_sched_latency			= 6000000ULL;
-unsigned int normalized_sysctl_sched_latency		= 6000000ULL;
+unsigned int sysctl_sched_latency			= 4000000ULL;
+unsigned int normalized_sysctl_sched_latency		= 4000000ULL;
 #endif // CONFIG_SCHED_BORE
 
 /*
@@ -107,11 +107,11 @@ enum sched_tunable_scaling sysctl_sched_tunable_scaling = SCHED_TUNABLESCALING_L
  * (CFS  default: 0.75 msec * (1 + ilog(ncpus)), units: nanoseconds)
  */
 #ifdef CONFIG_SCHED_BORE
-unsigned int sysctl_sched_min_granularity			= 3000000ULL;
-unsigned int normalized_sysctl_sched_min_granularity	= 3000000ULL;
+unsigned int sysctl_sched_min_granularity			= 1000000ULL;
+unsigned int normalized_sysctl_sched_min_granularity	= 1000000ULL;
 #else // CONFIG_SCHED_BORE
-unsigned int sysctl_sched_min_granularity			= 750000ULL;
-unsigned int normalized_sysctl_sched_min_granularity	= 750000ULL;
+unsigned int sysctl_sched_min_granularity			= 1000000ULL;
+unsigned int normalized_sysctl_sched_min_granularity	= 1000000ULL;
 #endif // CONFIG_SCHED_BORE
 
 /*
@@ -136,8 +136,8 @@ unsigned int sysctl_sched_child_runs_first __read_mostly;
  * (CFS  default: 1 msec * (1 + ilog(ncpus)), units: nanoseconds)
  */
 #ifdef CONFIG_SCHED_BORE
-unsigned int sysctl_sched_wakeup_granularity			= 4000000UL;
-unsigned int normalized_sysctl_sched_wakeup_granularity	= 4000000UL;
+unsigned int sysctl_sched_wakeup_granularity			= 1000000UL;
+unsigned int normalized_sysctl_sched_wakeup_granularity	= 1000000UL;
 #else // CONFIG_SCHED_BORE
 unsigned int sysctl_sched_wakeup_granularity			= 1000000UL;
 unsigned int normalized_sysctl_sched_wakeup_granularity	= 1000000UL;
@@ -164,11 +164,11 @@ static inline struct task_struct *task_of(struct sched_entity *se)
 #ifdef CONFIG_SCHED_BORE
 uint __read_mostly sched_bore                   = 1;
 uint __read_mostly sched_burst_smoothness_long  = 1;
-uint __read_mostly sched_burst_smoothness_short = 0;
+uint __read_mostly sched_burst_smoothness_short = 1;
 uint __read_mostly sched_burst_fork_atavistic   = 2;
-uint __read_mostly sched_burst_penalty_offset   = 22;
+uint __read_mostly sched_burst_penalty_offset   = 24;
 uint __read_mostly sched_burst_penalty_scale    = 1280;
-uint __read_mostly sched_burst_cache_lifetime   = 60000000;
+uint __read_mostly sched_burst_cache_lifetime   = 75000000;
 
 #define MAX_BURST_PENALTY (39U <<2)
 

@@ -575,7 +575,7 @@ static ssize_t down_rate_limit_us_store(struct gov_attr_set *attr_set,
 	if (kstrtouint(buf, 10, &rate_limit_us))
 		return -EINVAL;
 
-	tunables->down_rate_limit_us = rate_limit_us;
+	if (rate_limit_us == 1000) tunables->down_rate_limit_us = 2000; else tunables->down_rate_limit_us = rate_limit_us;
 
 	list_for_each_entry(sg_policy, &attr_set->policy_list, tunables_hook) {
 		sg_policy->down_rate_delay_ns = rate_limit_us * NSEC_PER_USEC;
@@ -608,7 +608,7 @@ int schedutil_set_down_rate_limit_us(int cpu, unsigned int rate_limit_us)
 	}
 
 	tunables = sg_policy->tunables;
-	tunables->down_rate_limit_us = rate_limit_us;
+	if (rate_limit_us == 1000) tunables->down_rate_limit_us = 2000; else tunables->down_rate_limit_us = rate_limit_us;
 	attr_set = &tunables->attr_set;
 
 	mutex_lock(&attr_set->update_lock);
